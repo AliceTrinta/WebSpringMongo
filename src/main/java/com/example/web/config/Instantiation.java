@@ -2,6 +2,7 @@ package com.example.web.config;
 
 import com.example.web.domain.Post;
 import com.example.web.domain.User;
+import com.example.web.dto.AuthorDTO;
 import com.example.web.repositories.PostRepository;
 import com.example.web.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +34,10 @@ public class Instantiation implements CommandLineRunner {
         User maria = new User(null, "Maria Brown", "maria@gmail.com");
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
-
-        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Trip!", "Trip to São Paulo!", maria);
-        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Happy!", "Happiest day!", maria);
-
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
+        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Trip!", "Trip to São Paulo!", new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Happy!", "Happiest day!", new AuthorDTO(maria));
         postRepository.saveAll(Arrays.asList(post1, post2));
     }
 }
