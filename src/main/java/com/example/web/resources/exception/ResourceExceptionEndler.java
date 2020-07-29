@@ -1,4 +1,4 @@
-package com.example.web.resource.exception;
+package com.example.web.resources.exception;
 
 import com.example.web.services.exception.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;

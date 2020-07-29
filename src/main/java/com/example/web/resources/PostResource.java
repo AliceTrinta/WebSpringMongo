@@ -3,6 +3,7 @@ package com.example.web.resources;
 import com.example.web.domain.Post;
 import com.example.web.domain.User;
 import com.example.web.dto.UserDTO;
+import com.example.web.resources.util.URL;
 import com.example.web.services.PostService;
 import com.example.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +27,12 @@ public class PostResource {
         Post obj = postService.findById(id);
         return ResponseEntity.ok().body(obj);
     }
+
+    @GetMapping(value = "/titlesearch")
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text){
+        text = URL.decodeParam(text);
+        List<Post> posts = postService.findByTitle(text);
+        return ResponseEntity.ok().body(posts);
+    }
+
 }
